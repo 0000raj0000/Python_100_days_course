@@ -3,13 +3,11 @@ import string
 
 def newpass(letter_count, sym_count, dig_count):
     password = []
-    password.extend(list((string.ascii_letters[random.randint(0, len(string.ascii_letters)-1 )]) for x in range(len(letter_count))))
-    print(password)
-    password.extend(list((string.punctuation[random.randint(0, len(string.punctuation)-1)]) for x in range(len(sym_count))))
-    print(password)
-    password.extend(list((string.digits[random.randint(0, len(string.digits)-1)]) for x in range(len(dig_count))))
-    print(password)
-    return random.shuffle(password)
+    password.extend([random.choice(string.ascii_letters) for x in range(int(letter_count))])
+    password.extend([random.choice(string.punctuation) for x in range(int(sym_count))])
+    password.extend([random.choice(string.digits) for x in range(int(dig_count))])
+    random.shuffle(password)
+    return password
 
 print('Welcome to the PyPassword Generator!')
 letnum = input('How many letters would you like in your password?\n')
@@ -18,4 +16,4 @@ dignum = input('How many number would you like?\n')
 
 passgen = newpass(letnum, symnum, dignum)
 
-print(f'Here is your password {passgen}')
+print(f'Here is your password {"".join(passgen)}')
